@@ -45,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               children: <Widget>[
                 Text(_page.toString(), textScaleFactor: 10.0),
                 RaisedButton(
-                  child: Text('Go To Page of index 1'),
+                  child: Text('Go To Page of index 1 update'),
                   onPressed: () {
                     final CurvedNavigationBarState navBarState =
                         _bottomNavigationKey.currentState;
