@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/cart_screen.dart';
-import 'package:xetia_shop/components/xetia_bottom_nav_bar.dart';
-import 'package:xetia_shop/dashboard_screen.dart';
-import 'package:xetia_shop/favorite_screen.dart';
-import 'package:xetia_shop/setting_screen.dart';
+import 'package:xetia_shop/screens/cart_screen.dart';
+import 'package:xetia_shop/screens/components/xetia_bottom_nav_bar.dart';
+import 'package:xetia_shop/screens/dashboard_screen.dart';
+import 'package:xetia_shop/screens/favorite_screen.dart';
+import 'package:xetia_shop/screens/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const name = "/home";
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

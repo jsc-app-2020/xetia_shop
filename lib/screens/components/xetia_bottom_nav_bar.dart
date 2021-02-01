@@ -1,6 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/constants.dart';
+import 'package:xetia_shop/screens/constants.dart';
 
 class XetiaBottomNavBar extends StatelessWidget {
   final int page;

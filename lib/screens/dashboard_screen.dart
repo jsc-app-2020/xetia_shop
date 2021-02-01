@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/components/colored_safe_area.dart';
-import 'package:xetia_shop/components/sliver_app_bar_delegate.dart';
+import 'package:xetia_shop/screens/components/colored_safe_area.dart';
+import 'package:xetia_shop/screens/components/sliver_app_bar_delegate.dart';
 
 import 'constants.dart';
 
