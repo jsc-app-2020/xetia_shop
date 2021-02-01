@@ -28,39 +28,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int page = 0;
-  GlobalKey bottomNavKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBody: true,
-        bottomNavigationBar: XetiaBottomNavBar(
-          key: bottomNavKey,
-          page: page,
-          onTap: (index) {
-            setState(() {
-              page = index;
-            });
-          },
-        ),
-        body: Container(
-          color: Colors.white,
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Text(page.toString(), textScaleFactor: 10.0),
-                RaisedButton(
-                  child: Text('Go To widget.page of index 1'),
-                  onPressed: () {
-                    final CurvedNavigationBarState navBarState =
-                        bottomNavKey.currentState;
-                    navBarState.setPage(1);
-                  },
-                )
-              ],
-            ),
-          ),
-        ));
+      extendBody: true,
+      bottomNavigationBar: XetiaBottomNavBar(
+        page: page,
+        onTap: (index) {
+          setState(() {
+            page = index;
+          });
+        },
+      ),
+      body: Container(),
+    );
   }
 }
 
