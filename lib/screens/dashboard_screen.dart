@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shifting_tabbar/shifting_tabbar.dart';
 import 'package:xetia_shop/screens/components/colored_safe_area.dart';
-import 'package:xetia_shop/screens/components/sliver_app_bar_delegate.dart';
+import 'package:xetia_shop/screens/components/search_text_field_grey.dart';
+import 'package:xetia_shop/screens/components/sliver_shifting_app_bar_delegate.dart';
 
 import 'constants.dart';
 
@@ -13,21 +15,18 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   List<String> tabText;
   List<IconData> tabIcon;
+  GlobalKey<FormState> formKeyShop = GlobalKey<FormState>();
+  String searchShop = "";
 
-  List<Widget> getList(List<String> tabText, List<IconData> tabIcon) {
-    List<Widget> childes = [];
+  List<ShiftingTab> getList(List<String> tabText, List<IconData> tabIcon) {
+    List<ShiftingTab> childes = [];
     for (var i = 0; i < tabText.length; i++) {
-      childes.add(Tab(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(tabIcon[i]),
-            SizedBox(width: 5),
-            Text(tabText[i]),
-          ],
-        ),
-      ));
+      childes.add(ShiftingTab(
+          text: tabText[i],
+          icon: Icon(
+            tabIcon[i],
+            size: 30,
+          )));
     }
     return childes;
   }
@@ -56,15 +55,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverPersistentHeader(
-                  delegate: SliverAppBarDelegate(
-                    TabBar(
-                      labelColor: kOrange,
-                      unselectedLabelColor: kGrey,
-                      indicatorColor: kOrange,
-                      indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
-                      physics: BouncingScrollPhysics(),
-                      labelStyle: TextStyle(fontWeight: FontWeight.w700),
+                  delegate: SliverShiftingAppBarDelegate(
+                    ShiftingTabBar(
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: kOrange,
+                        fontSize: 24,
+                      ),
                       tabs: getList(tabText, tabIcon),
+                      color: Colors.white,
+                      forceUpperCase: false,
                     ),
                   ),
                   pinned: true,
@@ -75,7 +75,81 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: Container(),
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(20),
+                            ),
+                          ),
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 10),
+                                    child: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(
+                                        'Halal food in Japan',
+                                        style: kDarkHeaderStyle,
+                                      ),
+                                    ),
+                                  ),
+                                  StatefulBuilder(
+                                    builder: (context, setState) => Form(
+                                      key: formKeyShop,
+                                      child: Container(
+                                        child: SearchTextFieldGrey(
+                                          hintText:
+                                              "Search halal food in Japan",
+                                          controller: searchShop,
+                                          onPressed: () {
+                                            if (formKeyShop.currentState
+                                                .validate()) {
+                                              print("search");
+                                            }
+                                          },
+                                          onFieldSubmitted: (value) {
+                                            if (formKeyShop.currentState
+                                                .validate()) {
+                                              print(value);
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              searchShop = value;
+                                            });
+                                          },
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return "Please enter some text";
+                                            }
+                                            return null;
+                                          },
+                                          closeSearch: () {
+                                            setState(() {
+                                              searchShop = "";
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 SingleChildScrollView(
                   physics: BouncingScrollPhysics(),

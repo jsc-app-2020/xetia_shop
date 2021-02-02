@@ -36,6 +36,8 @@ dependencies:
   shared_preferences: ^0.5.12+4
   flutter_svg: ^0.19.0
   page_transition: ^1.1.7+2
+  shifting_tabbar: ^0.3.1
+  auto_size_text: ^2.1.0
 
 
 
