@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/constants.dart';
+import 'package:xetia_shop/screens/constants.dart';
 
 class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   SliverAppBarDelegate(this._tabBar);
