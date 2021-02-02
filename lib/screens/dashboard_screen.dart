@@ -143,7 +143,137 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   ),
                                 ],
                               ),
-                              Container(),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "3600",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkBoldStyle,
+                                            ),
+                                            Text(
+                                              "Halal Food",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkNormalStyle,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 20),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "34",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkBoldStyle,
+                                            ),
+                                            Text(
+                                              "Mosque",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkNormalStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "210",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkBoldStyle,
+                                            ),
+                                            Text(
+                                              "Halal Shop",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkNormalStyle,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 20),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "24",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkBoldStyle,
+                                            ),
+                                            Text(
+                                              "Muslim Community",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkNormalStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "1300",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkBoldStyle,
+                                            ),
+                                            Text(
+                                              "Halal Restaurant",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkNormalStyle,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 20),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "3",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkBoldStyle,
+                                            ),
+                                            Text(
+                                              "Muslim corner",
+                                              textAlign: TextAlign.center,
+                                              style: kDarkNormalStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
