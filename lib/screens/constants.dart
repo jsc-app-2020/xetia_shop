@@ -63,3 +63,11 @@ BoxDecoration kBoxDecoration(Color color) => BoxDecoration(
 RoundedRectangleBorder kRoundedBorder = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(15),
 );
+
+List<BoxShadow> kShadow = [
+  BoxShadow(
+    color: Colors.black.withOpacity(0.2),
+    blurRadius: 8,
+    offset: Offset(0, 2),
+  ),
+];
