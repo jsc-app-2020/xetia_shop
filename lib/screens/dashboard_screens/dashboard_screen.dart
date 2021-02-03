@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifting_tabbar/shifting_tabbar.dart';
+import 'package:xetia_shop/screens/components/carousel_card_container.dart';
 import 'package:xetia_shop/screens/components/colored_safe_area.dart';
 import 'package:xetia_shop/screens/components/search_text_field_grey.dart';
 import 'package:xetia_shop/screens/components/sliver_shifting_app_bar_delegate.dart';
@@ -9,6 +10,7 @@ import 'package:xetia_shop/screens/network/product/product_data.dart';
 import 'package:xetia_shop/screens/products_components/grid_product/grid_product.dart';
 import 'package:xetia_shop/screens/components/my_button.dart';
 import 'package:xetia_shop/screens/constants.dart';
+import 'package:xetia_shop/screens/profile_screens/business_card_item.dart';
 import 'package:xetia_shop/screens/profile_screens/components/budgeting.dart';
 import 'package:xetia_shop/screens/profile_screens/components/history_transaction.dart';
 import 'package:xetia_shop/screens/profile_screens/components/my_balance.dart';
@@ -38,6 +40,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<dynamic> category;
   String search = "";
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  List<Widget> list = [
+    BusinessCardItem(color: kYellow),
+    BusinessCardItem(color: kYellow),
+    BusinessCardItem(color: kYellow),
+  ];
 
   void getProductData() async {
     setState(() {
@@ -464,6 +471,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         0.95,
                                     child: HistoryTransaction(
                                         color: kYellow, isDark: false)),
+                                SizedBox(height: 25),
+                                CarouselCardContainer(
+                                  color: kYellow,
+                                  isDark: false,
+                                  list: list,
+                                ),
                                 SizedBox(height: 25),
                                 Container(
                                   width:

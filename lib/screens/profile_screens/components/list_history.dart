@@ -47,7 +47,7 @@ class ListHistory extends StatelessWidget {
                 Text(
                   text,
                   textAlign: TextAlign.left,
-                  style: true
+                  style: false
                       ? kCustomBoldStyle(14, Colors.white)
                       : kCustomBoldStyle(14, Colors.black),
                 ),
@@ -57,7 +57,7 @@ class ListHistory extends StatelessWidget {
                 Text(
                   date,
                   textAlign: TextAlign.left,
-                  style: kCustomStyle(12, Colors.white),
+                  style: kCustomStyle(12, Colors.black),
                 ),
               ],
             ),

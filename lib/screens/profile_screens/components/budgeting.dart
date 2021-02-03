@@ -16,7 +16,13 @@ class Budgeting extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: false ? kBgWhite : kGrey,
+        color: true ? Colors.white.withOpacity(0.7) : kGrey,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 8,
+          ),
+        ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -31,7 +37,7 @@ class Budgeting extends StatelessWidget {
                 Text(
                   "Budgeting",
                   textAlign: TextAlign.center,
-                  style: kBoldStyle,
+                  style: kDarkBoldStyle,
                 ),
                 SizedBox(width: 140),
                 Text(
