@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/screens/components/colored_safe_area.dart';
+import 'package:xetia_shop/screens/components/my_button.dart';
 import 'package:xetia_shop/screens/components/sliver_app_bar_delegate.dart';
-
-import 'constants.dart';
+import 'package:xetia_shop/screens/constants.dart';
+import 'package:xetia_shop/screens/profile_screens/components/budgeting.dart';
+import 'package:xetia_shop/screens/profile_screens/components/history_transaction.dart';
+import 'package:xetia_shop/screens/profile_screens/components/my_balance.dart';
+import 'package:xetia_shop/screens/profile_screens/components/profile_card.dart';
+import 'package:xetia_shop/screens/signin_screens/sign_in_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -79,7 +84,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: Container(),
+                  child: Column(
+                    children: [
+                      ProfileCard(),
+                      MyBalance(color: kYellow, isDark: false),
+                      SizedBox(height: 25),
+                      Container(
+                          width: MediaQuery.of(context).size.width * 0.95,
+                          child: Budgeting(color: kGrey, isDark: false)),
+                      SizedBox(height: 25),
+                      Container(
+                          width: MediaQuery.of(context).size.width * 0.95,
+                          child: HistoryTransaction(
+                              color: kYellow, isDark: false)),
+                      SizedBox(height: 25),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: MyButton(
+                          color: kGreen,
+                          onTap: () {
+                            Navigator.pushNamed(context, SignInScreen.name);
+                          },
+                          text: "Logout",
+                        ),
+                      ),
+                      SizedBox(height: 25)
+                    ],
+                  ),
                 ),
                 SingleChildScrollView(
                   physics: BouncingScrollPhysics(),

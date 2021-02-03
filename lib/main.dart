@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/screens/home_screen.dart';
-import 'package:xetia_shop/screens/sign_in_screen.dart';
-import 'package:xetia_shop/screens/sign_up_name.dart';
+import 'package:xetia_shop/screens/signin_screens/sign_in_screen.dart';
+import 'package:xetia_shop/screens/signup_screens/sign_up_name.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 

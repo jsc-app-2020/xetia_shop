@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/screens/cart_screen.dart';
 import 'package:xetia_shop/screens/components/xetia_bottom_nav_bar.dart';
-import 'package:xetia_shop/screens/dashboard_screen.dart';
-import 'package:xetia_shop/screens/favorite_screen.dart';
-import 'package:xetia_shop/screens/setting_screen.dart';
+
+import 'cart_screens/cart_screen.dart';
+import 'dashboard_screens/dashboard_screen.dart';
+import 'favorite_screens/favorite_screen.dart';
+import 'setting_screens/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const name = "/home";
