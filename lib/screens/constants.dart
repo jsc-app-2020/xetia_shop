@@ -33,7 +33,7 @@ TextStyle kDarkContainerStyle = TextStyle(
 );
 
 TextStyle kGreyStyle = TextStyle(
-  color: kGrey,
+  color: Colors.grey,
 );
 
 TextStyle kNormalStyle =

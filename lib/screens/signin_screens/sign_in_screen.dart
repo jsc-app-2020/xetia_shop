@@ -4,12 +4,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:xetia_shop/screens/sign_up_name.dart';
-
-import 'components/my_button.dart';
-import 'components/my_textfield.dart';
-import 'components/my_textfield_password.dart';
-import 'constants.dart';
+import 'package:xetia_shop/screens/components/my_button.dart';
+import 'package:xetia_shop/screens/components/my_textfield.dart';
+import 'package:xetia_shop/screens/components/my_textfield_password.dart';
+import 'package:xetia_shop/screens/constants.dart';
+import 'package:xetia_shop/screens/signup_screens/sign_up_name.dart';
 
 class SignInScreen extends StatefulWidget {
   static const name = "/signIn";

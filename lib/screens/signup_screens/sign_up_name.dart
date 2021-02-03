@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:xetia_shop/screens/components/my_button.dart';
 import 'package:xetia_shop/screens/components/my_textfield.dart';
 import 'package:xetia_shop/screens/constants.dart';
-import 'package:xetia_shop/screens/sign_up_password.dart';
 
-import 'components/my_button.dart';
+import 'sign_up_password.dart';
 
 class SignUpNameScreen extends StatefulWidget {
   static const name = "/signUpName";
