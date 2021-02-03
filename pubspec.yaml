@@ -38,6 +38,10 @@ dependencies:
   page_transition: ^1.1.7+2
   shifting_tabbar: ^0.3.1
   auto_size_text: ^2.1.0
+  flutter_swiper: ^1.1.6
+  modal_bottom_sheet: ^1.0.0+1
+  font_awesome_flutter: ^8.4.0
+  flutter_staggered_grid_view: ^0.3.0
 
 
 
