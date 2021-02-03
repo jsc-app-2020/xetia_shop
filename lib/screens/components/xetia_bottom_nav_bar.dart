@@ -10,39 +10,42 @@ class XetiaBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      key: key,
-      index: 0,
-      height: 50.0,
-      items: <Widget>[
-        Icon(
-          page == 0 ? Icons.home : Icons.home_outlined,
-          size: page == 0 ? 30 : 24,
-          color: page == 0 ? Colors.black : kGrey,
-        ),
-        Icon(
-          page == 1 ? Icons.favorite : Icons.favorite_border,
-          size: page == 1 ? 30 : 24,
-          color: page == 1 ? Colors.black : kGrey,
-        ),
-        Icon(
-          page == 2 ? Icons.shop : Icons.shop_outlined,
-          size: page == 2 ? 30 : 24,
-          color: page == 2 ? Colors.black : kGrey,
-        ),
-        Icon(
-          page == 3 ? Icons.settings : Icons.settings_outlined,
-          size: page == 3 ? 30 : 24,
-          color: page == 3 ? Colors.black : kGrey,
-        ),
-      ],
-      backgroundColor: Color(0xff00FFFFFF),
-      color: kOrange,
-      buttonBackgroundColor: kOrange,
-      animationCurve: Curves.easeInOut,
-      animationDuration: Duration(milliseconds: 300),
-      onTap: onTap,
-      letIndexChange: (index) => true,
+    return Theme(
+      data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
+      child: CurvedNavigationBar(
+        key: key,
+        index: 0,
+        height: 50.0,
+        items: <Widget>[
+          Icon(
+            page == 0 ? Icons.home : Icons.home_outlined,
+            size: page == 0 ? 30 : 24,
+            color: page == 0 ? Colors.black : kGrey,
+          ),
+          Icon(
+            page == 1 ? Icons.favorite : Icons.favorite_border,
+            size: page == 1 ? 30 : 24,
+            color: page == 1 ? Colors.black : kGrey,
+          ),
+          Icon(
+            page == 2 ? Icons.shop : Icons.shop_outlined,
+            size: page == 2 ? 30 : 24,
+            color: page == 2 ? Colors.black : kGrey,
+          ),
+          Icon(
+            page == 3 ? Icons.settings : Icons.settings_outlined,
+            size: page == 3 ? 30 : 24,
+            color: page == 3 ? Colors.black : kGrey,
+          ),
+        ],
+        backgroundColor: Colors.transparent,
+        color: kOrange,
+        buttonBackgroundColor: kOrange,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 300),
+        onTap: onTap,
+        letIndexChange: (index) => true,
+      ),
     );
   }
 }
