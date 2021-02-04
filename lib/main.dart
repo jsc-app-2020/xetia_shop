@@ -8,21 +8,30 @@ void main() => runApp(MaterialApp(home: MyApp()));
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'XETIA SHOP',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        fontFamily: "Open-Sans",
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // home: HomeScreen(),
-      initialRoute: "/signIn",
-      routes: {
-        HomeScreen.name: (context) => HomeScreen(),
-        SignInScreen.name: (context) => SignInScreen(),
-        SignUpNameScreen.name: (context) => SignUpNameScreen()
+    return Listener(
+      onPointerDown: (_) {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          currentFocus.focusedChild.unfocus();
+        }
       },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'XETIA SHOP',
+        theme: ThemeData(
+          primarySwatch: Colors.orange,
+          fontFamily: "Open-Sans",
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        // home: HomeScreen(),
+        initialRoute: "/signIn",
+        routes: {
+          HomeScreen.name: (context) => HomeScreen(),
+          SignInScreen.name: (context) => SignInScreen(),
+          SignUpNameScreen.name: (context) => SignUpNameScreen()
+        },
+      ),
     );
   }
 }
