@@ -5,6 +5,7 @@ import 'package:xetia_shop/screens/components/carousel_card_container.dart';
 import 'package:xetia_shop/screens/components/colored_safe_area.dart';
 import 'package:xetia_shop/screens/components/search_text_field_grey.dart';
 import 'package:xetia_shop/screens/components/sliver_shifting_app_bar_delegate.dart';
+import 'package:xetia_shop/screens/message_screens/components/chat_item.dart';
 import 'package:xetia_shop/screens/model/product/product_response.dart';
 import 'package:xetia_shop/screens/network/product/product_data.dart';
 import 'package:xetia_shop/screens/products_components/grid_product/grid_product.dart';
@@ -23,6 +24,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  List<String> tab;
   List<String> tabText;
   List<IconData> tabIcon;
   GlobalKey<FormState> formKeyShop = GlobalKey<FormState>();
@@ -151,6 +153,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     tabText = ["Shop", "Profile", "Message"];
+    tab = ["All", "Unread"];
     tabIcon = [
       Icons.shop,
       CupertinoIcons.profile_circled,
@@ -461,14 +464,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 MyBalance(color: kYellow, isDark: false),
                                 SizedBox(height: 25),
                                 Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.95,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 25),
                                     child:
                                         Budgeting(color: kGrey, isDark: false)),
                                 SizedBox(height: 25),
                                 Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.95,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 25),
                                     child: HistoryTransaction(
                                         color: kYellow, isDark: false)),
                                 SizedBox(height: 25),
@@ -494,10 +497,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ],
                             ),
                           ),
-                          SingleChildScrollView(
-                            physics: BouncingScrollPhysics(),
-                            child: Container(),
-                          ),
+                          DefaultTabController(
+                              length: 2,
+                              child: NestedScrollView(
+                                physics: BouncingScrollPhysics(),
+                                headerSliverBuilder: (BuildContext context,
+                                    bool innerBoxIsScrolled) {
+                                  return <Widget>[
+                                    kSliverTabBar(
+                                        isDark: false, color: kYellow, tab: tab)
+                                  ];
+                                },
+                                body: TabBarView(
+                                  children: [
+                                    Container(
+                                      color: Colors.white,
+                                      child: SingleChildScrollView(
+                                        physics: BouncingScrollPhysics(),
+                                        child: Column(children: [
+                                          Padding(
+                                            padding: EdgeInsets.all(25),
+                                            child: Form(
+                                              key: formKeyShop,
+                                              child: Container(
+                                                child: SearchTextFieldGrey(
+                                                  hintText:
+                                                      "Search halal food in Japan",
+                                                  controller: searchShop,
+                                                  onPressed: () {
+                                                    if (formKeyShop.currentState
+                                                        .validate()) {
+                                                      print("search");
+                                                    }
+                                                  },
+                                                  onFieldSubmitted: (value) {
+                                                    if (formKeyShop.currentState
+                                                        .validate()) {
+                                                      print(value);
+                                                    }
+                                                  },
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      searchShop = value;
+                                                    });
+                                                  },
+                                                  validator: (value) {
+                                                    if (value.isEmpty) {
+                                                      return "Please enter some text";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  closeSearch: () {
+                                                    setState(() {
+                                                      searchShop = "";
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          ChatItem(
+                                              isDark: false, color: kYellow),
+                                        ]),
+                                      ),
+                                    ),
+                                    Icon(Icons.directions_transit),
+                                  ],
+                                ),
+                              )),
                         ],
                       ),
                     ),
