@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/screens/constants.dart';
+import 'package:xetia_shop/constants.dart';
 
 import 'avatar.dart';
 import 'chat_member.dart';
