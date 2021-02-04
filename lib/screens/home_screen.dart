@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/screens/components/colored_safe_area.dart';
-import 'package:xetia_shop/screens/components/xetia_bottom_nav_bar.dart';
-import 'package:xetia_shop/screens/constants.dart';
+import 'package:xetia_shop/components/colored_safe_area.dart';
+import 'package:xetia_shop/components/xetia_bottom_nav_bar.dart';
+import 'package:xetia_shop/constants.dart';
 
 import 'cart_screens/cart_screen.dart';
 import 'dashboard_screens/dashboard_screen.dart';

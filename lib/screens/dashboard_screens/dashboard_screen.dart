@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifting_tabbar/shifting_tabbar.dart';
-import 'package:xetia_shop/screens/components/colored_safe_area.dart';
-import 'package:xetia_shop/screens/components/sliver_shifting_app_bar_delegate.dart';
-import 'package:xetia_shop/screens/constants.dart';
-import 'package:xetia_shop/screens/profile_screen/profile_screen.dart';
-import 'package:xetia_shop/shop_screen/shop_screen.dart';
+import 'package:xetia_shop/components/colored_safe_area.dart';
+import 'package:xetia_shop/components/sliver_shifting_app_bar_delegate.dart';
+import 'package:xetia_shop/constants.dart';
+import 'package:xetia_shop/screens/dashboard_screens/profile_screens/profile_screen.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/shop_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
