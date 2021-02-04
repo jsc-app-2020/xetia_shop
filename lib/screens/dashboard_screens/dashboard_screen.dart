@@ -13,6 +13,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  List<String> tab;
   List<String> tabText;
   List<IconData> tabIcon;
 
@@ -33,6 +34,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     tabText = ["Shop", "Profile", "Message"];
+    tab = ["All", "Unread"];
     tabIcon = [
       Icons.shop,
       CupertinoIcons.profile_circled,
