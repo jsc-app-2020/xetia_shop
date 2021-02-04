@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:provider/provider.dart';
-import 'package:xetia_shop/screens/components/my_button.dart';
-import 'package:xetia_shop/screens/components/my_textfield_password.dart';
-import 'package:xetia_shop/screens/constants.dart';
+import 'package:xetia_shop/components/my_button.dart';
+import 'package:xetia_shop/components/my_textfield_password.dart';
+import 'package:xetia_shop/constants.dart';
 
 class SignUpPasswordScreen extends StatefulWidget {
   final String first;
@@ -29,6 +27,7 @@ class _SignUpPasswordScreenState extends State<SignUpPasswordScreen> {
   bool isObscureSecond = true;
 
   final _formKey = GlobalKey<FormState>();
+
   // Auth auth;
 
   @override
@@ -74,7 +73,7 @@ class _SignUpPasswordScreenState extends State<SignUpPasswordScreen> {
                       SizedBox(height: 40),
                       Text(
                         "hello",
-                        style: false ? kHeaderStyle : kDarkHeaderStyle,
+                        style: kDarkHeaderStyle,
                       ),
                     ],
                   ),
