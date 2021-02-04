@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/components/search_text_field_grey.dart';
@@ -13,8 +15,6 @@ class ShopScreen extends StatefulWidget {
 
 class _ShopScreenState extends State<ShopScreen>
     with AutomaticKeepAliveClientMixin<ShopScreen> {
-  GlobalKey<FormState> formKeyShop = GlobalKey<FormState>();
-  String searchShop = "";
   int selectedIndex = 0;
   int page = 1;
   int pageSearch = 1;
@@ -151,206 +151,9 @@ class _ShopScreenState extends State<ShopScreen>
                 child: Container(
                   child: Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.vertical(
-                            bottom: Radius.circular(20),
-                          ),
-                          boxShadow: kShadow,
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  child: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(
-                                      'Halal food in Japan',
-                                      style: kDarkHeaderStyle,
-                                    ),
-                                  ),
-                                ),
-                                StatefulBuilder(
-                                  builder: (context, setState) => Form(
-                                    key: formKeyShop,
-                                    child: Container(
-                                      child: SearchTextFieldGrey(
-                                        hintText: "Search halal food in Japan",
-                                        controller: searchShop,
-                                        onPressed: () {
-                                          if (formKeyShop.currentState
-                                              .validate()) {
-                                            print("search");
-                                          }
-                                        },
-                                        onFieldSubmitted: (value) {
-                                          if (formKeyShop.currentState
-                                              .validate()) {
-                                            print(value);
-                                          }
-                                        },
-                                        onChanged: (value) {
-                                          setState(() {
-                                            searchShop = value;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return "Please enter some text";
-                                          }
-                                          return null;
-                                        },
-                                        closeSearch: () {
-                                          setState(() {
-                                            searchShop = "";
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "3600",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkBoldStyle,
-                                          ),
-                                          Text(
-                                            "Halal Food",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkNormalStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 20),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "34",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkBoldStyle,
-                                          ),
-                                          Text(
-                                            "Mosque",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkNormalStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "210",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkBoldStyle,
-                                          ),
-                                          Text(
-                                            "Halal Shop",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkNormalStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 20),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "24",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkBoldStyle,
-                                          ),
-                                          Text(
-                                            "Muslim Community",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkNormalStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "1300",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkBoldStyle,
-                                          ),
-                                          Text(
-                                            "Halal Restaurant",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkNormalStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 20),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "3",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkBoldStyle,
-                                          ),
-                                          Text(
-                                            "Muslim corner",
-                                            textAlign: TextAlign.center,
-                                            style: kDarkNormalStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      HeaderShop(),
                       SizedBox(height: 20),
+                      PopularShop(),
                       GridProduct(
                         isLoadMore: isLoadMore,
                         products: productList,
@@ -362,5 +165,254 @@ class _ShopScreenState extends State<ShopScreen>
               ),
             ),
           );
+  }
+}
+
+class PopularShop extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Popular Shops",
+              style: kDarkContainerStyle,
+            ),
+          ),
+          SizedBox(height: 20),
+          SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                  10,
+                  (index) => Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Color(
+                                      (Random().nextDouble() * 0xFFFFFF)
+                                          .toInt())
+                                  .withOpacity(1.0),
+                              radius: 50,
+                            ),
+                            SizedBox(height: 4),
+                            Text("Sariraya", style: kDarkBoldStyle),
+                            SizedBox(height: 2),
+                            Text("Nagoya", style: kDarkNormalStyle),
+                          ],
+                        ),
+                      )),
+            ),
+          ),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+
+class HeaderShop extends StatefulWidget {
+  @override
+  _HeaderShopState createState() => _HeaderShopState();
+}
+
+class _HeaderShopState extends State<HeaderShop> {
+  String searchShop = "";
+  GlobalKey<FormState> formKeyShop = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(20),
+        ),
+        boxShadow: kShadow,
+      ),
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'Halal food in Japan',
+                    style: kDarkHeaderStyle,
+                  ),
+                ),
+              ),
+              StatefulBuilder(
+                builder: (context, setState) => Form(
+                  key: formKeyShop,
+                  child: Container(
+                    child: SearchTextFieldGrey(
+                      hintText: "Search halal food in Japan",
+                      controller: searchShop,
+                      onPressed: () {
+                        if (formKeyShop.currentState.validate()) {
+                          print("search");
+                        }
+                      },
+                      onFieldSubmitted: (value) {
+                        if (formKeyShop.currentState.validate()) {
+                          print(value);
+                        }
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          searchShop = value;
+                        });
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Please enter some text";
+                        }
+                        return null;
+                      },
+                      closeSearch: () {
+                        setState(() {
+                          searchShop = "";
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "3600",
+                          textAlign: TextAlign.center,
+                          style: kDarkBoldStyle,
+                        ),
+                        Text(
+                          "Halal Food",
+                          textAlign: TextAlign.center,
+                          style: kDarkNormalStyle,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "34",
+                          textAlign: TextAlign.center,
+                          style: kDarkBoldStyle,
+                        ),
+                        Text(
+                          "Mosque",
+                          textAlign: TextAlign.center,
+                          style: kDarkNormalStyle,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "210",
+                          textAlign: TextAlign.center,
+                          style: kDarkBoldStyle,
+                        ),
+                        Text(
+                          "Halal Shop",
+                          textAlign: TextAlign.center,
+                          style: kDarkNormalStyle,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "24",
+                          textAlign: TextAlign.center,
+                          style: kDarkBoldStyle,
+                        ),
+                        Text(
+                          "Muslim Community",
+                          textAlign: TextAlign.center,
+                          style: kDarkNormalStyle,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "1300",
+                          textAlign: TextAlign.center,
+                          style: kDarkBoldStyle,
+                        ),
+                        Text(
+                          "Halal Restaurant",
+                          textAlign: TextAlign.center,
+                          style: kDarkNormalStyle,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "3",
+                          textAlign: TextAlign.center,
+                          style: kDarkBoldStyle,
+                        ),
+                        Text(
+                          "Muslim corner",
+                          textAlign: TextAlign.center,
+                          style: kDarkNormalStyle,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
