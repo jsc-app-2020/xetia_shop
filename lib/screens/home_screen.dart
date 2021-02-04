@@ -35,13 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return ColoredSafeArea(
       color: kBgWhite,
       child: Scaffold(
-        extendBody: true,
         body: bodies[page],
         bottomNavigationBar: XetiaBottomNavBar(
-          page: page,
-          onTap: (index) {
+          onTap: (value) {
             setState(() {
-              page = index;
+              page = value;
             });
           },
         ),
