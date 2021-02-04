@@ -5,9 +5,9 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:xetia_shop/core/model/product/product_response.dart';
 import 'package:xetia_shop/constants.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/detail_product/detail_product_dialog.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/grid_product/loading_bar_more_product.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/grid_product/product_card.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/detail_product/detail_product_dialog.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/grid_product/loading_bar_more_product.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/grid_product/product_card.dart';
 
 class GridProduct extends StatelessWidget {
   final bool isLoadMore;

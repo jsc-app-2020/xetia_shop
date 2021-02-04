@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/favorite_button.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/favorite_button.dart';
 
 class FourRectangleButton extends StatelessWidget {
   @override

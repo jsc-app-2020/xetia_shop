@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/core/model/product/product_response.dart';
 import 'package:xetia_shop/constants.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/product_price.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/product_price.dart';
 
 class InfoProduct extends StatelessWidget {
   const InfoProduct({

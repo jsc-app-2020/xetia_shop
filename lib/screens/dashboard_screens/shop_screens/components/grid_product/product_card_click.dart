@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:xetia_shop/core/model/product/product_response.dart';
 import 'package:xetia_shop/constants.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/favorite_button.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/info_product.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/favorite_button.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/info_product.dart';
 
 class ProductCardClick extends StatelessWidget {
   final Product product;

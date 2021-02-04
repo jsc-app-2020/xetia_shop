@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/core/model/product/product_response.dart';
 import 'package:xetia_shop/constants.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/favorite_button.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/grid_product/product_card_click.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/products_components/info_product.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/favorite_button.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/grid_product/product_card_click.dart';
+import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/info_product.dart';
 
 class ProductCard extends StatefulWidget {
   final Product product;
