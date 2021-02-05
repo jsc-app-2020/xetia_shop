@@ -15,11 +15,11 @@ class MessageRoomScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isDark ? kGrey : Colors.white.withOpacity(0.7),
+      backgroundColor: isDark ? Colors.white.withOpacity(0.7) : Colors.white,
       appBar: AppBar(
         elevation: 4,
         automaticallyImplyLeading: false,
-        backgroundColor: isDark ? kGrey : Colors.white,
+        backgroundColor: !isDark ? Colors.white.withOpacity(0.7) : Colors.white,
         toolbarHeight: 70,
         flexibleSpace: SafeArea(
           child: Container(
@@ -82,7 +82,7 @@ class MessageRoomScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 75,
-            color: isDark ? kGrey : Colors.white,
+            color: !isDark ? Colors.white.withOpacity(0.7) : Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisSize: MainAxisSize.max,

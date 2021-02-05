@@ -134,7 +134,7 @@ class BubbleChat extends StatelessWidget {
           style: isDark ? kNormalStyle : kDarkNormalStyle,
         ),
       ),
-      color: isDark
+      color: !isDark
           ? isRight
               ? kGrey
               : color

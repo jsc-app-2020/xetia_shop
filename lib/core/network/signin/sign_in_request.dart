@@ -15,5 +15,20 @@ Future<SignInResponse> signInRequest(String email, String password) async {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{"email": email, "password": password}));
-  return SignInResponse.fromJson(jsonDecode(response.body));
+
+  if (response.statusCode == 200) {
+    return SignInResponse.fromJson(jsonDecode(response.body));
+  } else {
+    return SignInResponse(
+        entityId: null,
+        entityType: null,
+        entityName: null,
+        firstName: null,
+        imageUrl: null,
+        lastName: null,
+        tokens: null,
+        userId: null,
+        userRoles: null,
+        meta: Meta(code: 404, message: "Login failed"));
+  }
 }
