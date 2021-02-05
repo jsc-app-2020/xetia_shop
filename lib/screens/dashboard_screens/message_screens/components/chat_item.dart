@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/constants.dart';
 
+import '../message_room.dart';
 import 'avatar.dart';
 import 'chat_member.dart';
 
@@ -18,15 +19,15 @@ class ChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ChatRoomScreen(
-        //       isDark: isDark,
-        //       color: color,
-        //     ),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MessageRoomScreen(
+              isDark: false,
+              color: kYellow,
+            ),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
