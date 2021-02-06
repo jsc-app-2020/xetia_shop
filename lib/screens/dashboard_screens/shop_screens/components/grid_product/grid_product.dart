@@ -7,7 +7,6 @@ import 'package:xetia_shop/constants.dart';
 import 'package:xetia_shop/core/model/product/product_response.dart';
 import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/detail_product/detail_product_dialog.dart';
 import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/grid_product/loading_bar_more_product.dart';
-import 'package:xetia_shop/screens/dashboard_screens/shop_screens/components/grid_product/product_card.dart';
 
 class GridProduct extends StatefulWidget {
   final bool isLoadMore;
@@ -114,11 +113,10 @@ class _GridProductState extends State<GridProduct> {
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return ProductCard(
+                              return GridItem(
+                                widget: widget,
                                 index: index,
-                                product: widget.products[index],
                                 onTap: () {
-                                  // show detail dengan bottom sheet
                                   _showSheet(widget.products, context,
                                       widget.products.length, index);
                                 },
@@ -176,6 +174,69 @@ class _GridProductState extends State<GridProduct> {
             iconPrevious: Icons.keyboard_arrow_left_rounded,
             size: 36,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class GridItem extends StatelessWidget {
+  const GridItem({
+    Key key,
+    @required this.widget,
+    @required this.index,
+    @required this.onTap,
+  }) : super(key: key);
+
+  final GridProduct widget;
+  final int index;
+  final Function onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(5),
+        child: Column(
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    widget.products[index].thumbnail.replaceAll(
+                        "https://storage.googleapis.com/jsc-product-images/http",
+                        "http"),
+                    fit: BoxFit.cover,
+                    height: 200,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  Text(widget.products[index].name),
+                  Text(widget.products[index].category),
+                  Text(widget.products[index].price),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

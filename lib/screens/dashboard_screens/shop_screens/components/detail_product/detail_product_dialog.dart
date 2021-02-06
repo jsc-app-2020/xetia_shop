@@ -62,7 +62,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                           child: Image.network(
                             widget.product.thumbnail.replaceAll(
                                 "https://storage.googleapis.com/jsc-product-images/http",
-                                "https"),
+                                "http"),
                             fit: BoxFit.cover,
                             width: double.infinity,
                           ),
