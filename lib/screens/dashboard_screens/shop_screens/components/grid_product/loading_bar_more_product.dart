@@ -9,7 +9,7 @@ class LoadingBarMoreProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return isLoadMore
         ? Container(
-            margin: EdgeInsets.only(bottom: 80),
+            margin: EdgeInsets.symmetric(vertical: 20),
             child: Center(
               child: CircularProgressIndicator(),
             ),
