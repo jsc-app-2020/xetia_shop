@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xetia_shop/components/my_button.dart';
 import 'package:xetia_shop/components/my_textfield.dart';
 import 'package:xetia_shop/components/my_textfield_password.dart';
+import 'package:xetia_shop/core/db/model/user.dart';
+import 'package:xetia_shop/core/db/user_database_provider.dart';
+import 'package:xetia_shop/core/network/signin/sign_in_request.dart';
+import 'package:xetia_shop/core/network/token/subcription_token.dart';
 import 'package:xetia_shop/screens/signup_screens/sign_up_name.dart';
 
 import 'package:xetia_shop/constants.dart';
@@ -129,14 +135,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           MyButton(
                             color: kGreen,
                             onTap: () {
-                              Navigator.pushNamed(context, "/home");
-                              // if (email.isEmpty || password.isEmpty) {
-                              //   Fluttertoast.showToast(
-                              //     msg: "fill_your_data",
-                              //     backgroundColor: kRed,
-                              //   );
-                              //   return;
-                              // }
+                              if (email.isEmpty || password.isEmpty) {
+                                Fluttertoast.showToast(
+                                  msg: "fill your data",
+                                  backgroundColor: kRed,
+                                );
+                                return;
+                              }
+                              doSignIn(context);
                             },
                             text: "sign in",
                           ),
@@ -232,5 +238,57 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
+  }
+
+  void doSignIn(BuildContext context) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      isLoading = true;
+    });
+
+    final loginRes = await signInRequest(email, password);
+
+    if (loginRes.meta.code == 200) {
+      // String subscription = await getSubscription(loginRes.userId);
+
+      preferences.setBool(
+          "https://02jsc2020-eval-test.apigee.net/user/login", true);
+
+      User user = User(
+        id: 1,
+        role: 1,
+        roleName: loginRes.userRoles[0].roleName,
+        roleDescription: loginRes.userRoles[0].roleDescription,
+        entityId: loginRes.entityId,
+        entityName: loginRes.entityName,
+        entityType: loginRes.entityType,
+        userId: loginRes.userId,
+        first: loginRes.firstName,
+        last: loginRes.lastName,
+        photo: loginRes.imageUrl,
+        refreshToken: loginRes.tokens.refresh,
+        accessToken: loginRes.tokens.access,
+        subcriptionToken: "subscription",
+      );
+
+      await UserProvider.db.insertUser(user);
+
+      // print(user.entityId);
+
+      Fluttertoast.showToast(
+        msg: "sign in successful",
+        backgroundColor: kGreen,
+      );
+
+      Navigator.pushNamed(context, "/home");
+    } else {
+      Fluttertoast.showToast(
+        msg: "failed to sign in",
+        backgroundColor: kRed,
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
   }
 }

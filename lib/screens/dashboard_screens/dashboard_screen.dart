@@ -4,6 +4,7 @@ import 'package:shifting_tabbar/shifting_tabbar.dart';
 import 'package:xetia_shop/components/colored_safe_area.dart';
 import 'package:xetia_shop/components/sliver_shifting_app_bar_delegate.dart';
 import 'package:xetia_shop/constants.dart';
+import 'package:xetia_shop/screens/dashboard_screens/message_screens/message_screen.dart';
 import 'package:xetia_shop/screens/dashboard_screens/profile_screens/profile_screen.dart';
 import 'package:xetia_shop/screens/dashboard_screens/shop_screens/shop_screen.dart';
 
@@ -13,7 +14,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  List<String> tab;
   List<String> tabText;
   List<IconData> tabIcon;
 
@@ -34,7 +34,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     tabText = ["Shop", "Profile", "Message"];
-    tab = ["All", "Unread"];
     tabIcon = [
       Icons.shop,
       CupertinoIcons.profile_circled,
@@ -77,10 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 ShopScreen(),
                 ProfileScreen(),
-                SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Container(),
-                ),
+                MessageScreen(),
               ],
             ),
           ),
