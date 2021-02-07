@@ -13,6 +13,7 @@ class _MessageScreenState extends State<MessageScreen> {
   List<String> tab;
   String search = "";
   GlobalKey<FormState> formKeyShop = GlobalKey<FormState>();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -37,47 +38,49 @@ class _MessageScreenState extends State<MessageScreen> {
                 color: Colors.white,
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: Column(children: [
-                    Padding(
-                      padding: EdgeInsets.all(25),
-                      child: Form(
-                        key: formKeyShop,
-                        child: Container(
-                          child: SearchTextFieldGrey(
-                            hintText: "Search halal food in Japan",
-                            controller: search,
-                            onPressed: () {
-                              if (formKeyShop.currentState.validate()) {
-                                print("search");
-                              }
-                            },
-                            onFieldSubmitted: (value) {
-                              if (formKeyShop.currentState.validate()) {
-                                print(value);
-                              }
-                            },
-                            onChanged: (value) {
-                              setState(() {
-                                search = value;
-                              });
-                            },
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return "Please enter some text";
-                              }
-                              return null;
-                            },
-                            closeSearch: () {
-                              setState(() {
-                                search = "";
-                              });
-                            },
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(25),
+                        child: Form(
+                          key: formKeyShop,
+                          child: Container(
+                            child: SearchTextFieldGrey(
+                              hintText: "Search halal food in Japan",
+                              controller: search,
+                              onPressed: () {
+                                if (formKeyShop.currentState.validate()) {
+                                  print("search");
+                                }
+                              },
+                              onFieldSubmitted: (value) {
+                                if (formKeyShop.currentState.validate()) {
+                                  print(value);
+                                }
+                              },
+                              onChanged: (value) {
+                                setState(() {
+                                  search = value;
+                                });
+                              },
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return "Please enter some text";
+                                }
+                                return null;
+                              },
+                              closeSearch: () {
+                                setState(() {
+                                  search = "";
+                                });
+                              },
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    ChatItem(isDark: false, color: kYellow),
-                  ]),
+                      ChatItem(isDark: false, color: kYellow),
+                    ],
+                  ),
                 ),
               ),
               Icon(Icons.directions_transit),

@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               text: "Logout",
             ),
           ),
-          SizedBox(height: 25)
+          SizedBox(height: 70),
         ],
       ),
     );

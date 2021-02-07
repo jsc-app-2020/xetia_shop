@@ -145,7 +145,7 @@ class _ShopScreenState extends State<ShopScreen>
                 return true;
               },
               child: SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 child: Container(
                   child: Column(
                     children: [
@@ -157,6 +157,7 @@ class _ShopScreenState extends State<ShopScreen>
                         products: productList,
                         isNotFound: isNotFound,
                       ),
+                      SizedBox(height: 70),
                     ],
                   ),
                 ),
