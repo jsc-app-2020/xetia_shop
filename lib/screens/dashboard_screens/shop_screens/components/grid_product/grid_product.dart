@@ -137,7 +137,14 @@ class ListLayoutShop extends StatelessWidget {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return ListItemShop(widget: widget, index: index);
+            return ListItemShop(
+              widget: widget,
+              index: index,
+              onTap: () {
+                _showSheet(
+                    widget.products, context, widget.products.length, index);
+              },
+            );
           },
         ),
         LoadingBarMoreProduct(isLoadMore: widget.isLoadMore),
@@ -151,10 +158,12 @@ class ListItemShop extends StatefulWidget {
     Key key,
     @required this.widget,
     @required this.index,
+    @required this.onTap,
   }) : super(key: key);
 
   final GridProduct widget;
   final int index;
+  final Function onTap;
 
   @override
   _ListItemShopState createState() => _ListItemShopState();
@@ -179,132 +188,136 @@ class _ListItemShopState extends State<ListItemShop> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Image.network(
-                    widget.widget.products[widget.index].thumbnail.replaceAll(
-                        "https://storage.googleapis.com/jsc-product-images/http",
-                        "http"),
-                    fit: BoxFit.cover,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes
-                              : null,
-                        ),
-                      );
-                    },
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.network(
+                      widget.widget.products[widget.index].thumbnail.replaceAll(
+                          "https://storage.googleapis.com/jsc-product-images/http",
+                          "http"),
+                      fit: BoxFit.cover,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(width: 10),
-          Expanded(
-            flex: 3,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        MiniButton(
-                          icon: FontAwesomeIcons.plus,
-                          bgColor: Colors.black,
-                          iconColor: Colors.white,
-                          onTap: addPcs,
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          pcs.toString(),
-                          style: kDarkNormalStyle,
-                        ),
-                        SizedBox(height: 4),
-                        MiniButton(
-                          icon: FontAwesomeIcons.minus,
-                          bgColor: Colors.black,
-                          iconColor: Colors.white,
-                          onTap: minPcs,
-                        )
-                      ],
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.widget.products[widget.index].name,
-                              style: kCustomBoldStyle(14, Colors.black),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              widget.widget.products[widget.index].weight !=
-                                      null
-                                  ? widget.widget.products[widget.index].weight
-                                  : "0",
-                              style: kDarkNormalStyle,
-                            ),
-                            SizedBox(height: 2),
-                            Text(
-                              "¥${widget.widget.products[widget.index].price}",
-                              style: kDarkNormalStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    MiniButton(
-                        iconColor: Colors.white,
-                        bgColor: kOrange,
-                        icon: Icons.favorite_border),
-                    SizedBox(width: 15),
-                    MiniButton(
-                        iconColor: Colors.white,
-                        bgColor: kOrange,
-                        icon: CupertinoIcons.cart),
-                    SizedBox(width: 15),
-                    Expanded(
-                      child: Container(
-                        decoration: kBoxDecoration(kOrange),
-                        padding: EdgeInsets.all(5),
-                        child: Center(
-                          child: Text(
-                            "Buy",
+            SizedBox(width: 10),
+            Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          MiniButton(
+                            icon: FontAwesomeIcons.plus,
+                            bgColor: Colors.black,
+                            iconColor: Colors.white,
+                            onTap: addPcs,
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            pcs.toString(),
                             style: kDarkNormalStyle,
+                          ),
+                          SizedBox(height: 4),
+                          MiniButton(
+                            icon: FontAwesomeIcons.minus,
+                            bgColor: Colors.black,
+                            iconColor: Colors.white,
+                            onTap: minPcs,
+                          )
+                        ],
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.widget.products[widget.index].name,
+                                style: kCustomBoldStyle(14, Colors.black),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                widget.widget.products[widget.index].weight !=
+                                        null
+                                    ? widget
+                                        .widget.products[widget.index].weight
+                                    : "0",
+                                style: kDarkNormalStyle,
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                "¥${widget.widget.products[widget.index].price}",
+                                style: kDarkNormalStyle,
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MiniButton(
+                          iconColor: Colors.white,
+                          bgColor: kOrange,
+                          icon: Icons.favorite_border),
+                      SizedBox(width: 15),
+                      MiniButton(
+                          iconColor: Colors.white,
+                          bgColor: kOrange,
+                          icon: CupertinoIcons.cart),
+                      SizedBox(width: 15),
+                      Expanded(
+                        child: Container(
+                          decoration: kBoxDecoration(kOrange),
+                          padding: EdgeInsets.all(5),
+                          child: Center(
+                            child: Text(
+                              "Buy",
+                              style: kDarkNormalStyle,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
