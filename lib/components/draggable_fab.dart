@@ -1,6 +1,6 @@
 import 'package:draggable_widget/draggable_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/components/xetia_bottom_nav_bar.dart';
+import 'package:xetia_shop/components/custom_curved_nav_bar.dart';
 import 'package:xetia_shop/constants.dart';
 
 class MyDraggableFAB extends StatelessWidget {

@@ -2,13 +2,13 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:xetia_shop/constants.dart';
 
-class XetiaBottomNavBar extends StatelessWidget {
+class CustomCurvedNavBar extends StatelessWidget {
   final Function onTap;
   final Function onDoubleTap;
   final List<NavBarItem> items;
   final int page;
 
-  XetiaBottomNavBar(
+  CustomCurvedNavBar(
       {Key key, this.onTap, this.page, this.onDoubleTap, this.items})
       : super(key: key);
 
