@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/components/colored_safe_area.dart';
 import 'package:xetia_shop/components/xetia_bottom_nav_bar.dart';
-import 'package:xetia_shop/constants.dart';
 
 import 'cart_screens/cart_screen.dart';
 import 'dashboard_screens/dashboard_screen.dart';
@@ -32,17 +30,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(
-      color: kBgWhite,
-      child: Scaffold(
-        body: bodies[page],
-        bottomNavigationBar: XetiaBottomNavBar(
-          onTap: (value) {
-            setState(() {
-              page = value;
-            });
-          },
-        ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          bodies[page],
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: XetiaBottomNavBar(
+              onTap: (value) {
+                setState(() {
+                  page = value;
+                });
+              },
+              page: page,
+            ),
+          ),
+        ],
       ),
     );
   }
