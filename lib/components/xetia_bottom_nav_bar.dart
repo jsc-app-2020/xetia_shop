@@ -4,44 +4,46 @@ import 'package:xetia_shop/constants.dart';
 
 class XetiaBottomNavBar extends StatelessWidget {
   final Function onTap;
+  final Function onDoubleTap;
+  final List<NavBarItem> items;
   final int page;
 
-  const XetiaBottomNavBar({Key key, this.onTap, this.page}) : super(key: key);
+  XetiaBottomNavBar(
+      {Key key, this.onTap, this.page, this.onDoubleTap, this.items})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      index: 0,
-      height: 50.0,
-      items: <Widget>[
-        Icon(
-          page == 0 ? Icons.home : Icons.home_outlined,
-          size: page == 0 ? 30 : 24,
-          color: page == 0 ? Colors.white : kGrey,
+    return GestureDetector(
+      onDoubleTap: onDoubleTap,
+      child: CurvedNavigationBar(
+        index: page,
+        height: 50.0,
+        items: List.generate(
+          items.length,
+          (index) => Icon(
+            page == index
+                ? items[index].selectedIcon
+                : items[index].unselectedIcon,
+            size: page == index ? 30 : 24,
+            color: page == index ? Colors.white : kGrey,
+          ),
         ),
-        Icon(
-          page == 1 ? Icons.favorite : Icons.favorite_border,
-          size: page == 1 ? 30 : 24,
-          color: page == 1 ? Colors.white : kGrey,
-        ),
-        Icon(
-          page == 2 ? Icons.shop : Icons.shop_outlined,
-          size: page == 2 ? 30 : 24,
-          color: page == 2 ? Colors.white : kGrey,
-        ),
-        Icon(
-          page == 3 ? Icons.settings : Icons.settings_outlined,
-          size: page == 3 ? 30 : 24,
-          color: page == 3 ? Colors.white : kGrey,
-        ),
-      ],
-      backgroundColor: Colors.transparent,
-      color: kOrange,
-      buttonBackgroundColor: kOrange,
-      animationCurve: Curves.easeInOut,
-      animationDuration: Duration(milliseconds: 300),
-      onTap: onTap,
-      letIndexChange: (index) => true,
+        backgroundColor: Colors.transparent,
+        color: kOrange,
+        buttonBackgroundColor: kOrange,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 300),
+        onTap: onTap,
+        letIndexChange: (index) => true,
+      ),
     );
   }
+}
+
+class NavBarItem {
+  final IconData selectedIcon;
+  final IconData unselectedIcon;
+
+  NavBarItem(this.selectedIcon, this.unselectedIcon);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xetia_shop/components/draggable_fab.dart';
 import 'package:xetia_shop/components/xetia_bottom_nav_bar.dart';
 
 import 'cart_screens/cart_screen.dart';
@@ -16,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int page = 0;
   List<Widget> bodies;
+  List<NavBarItem> items;
+  bool showFAB = false;
 
   @override
   void initState() {
@@ -26,6 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
       CartScreen(),
       SettingScreen(),
     ];
+    items = [
+      NavBarItem(Icons.home, Icons.home_outlined),
+      NavBarItem(Icons.favorite, Icons.favorite_border),
+      NavBarItem(Icons.shop, Icons.shop_outlined),
+      NavBarItem(Icons.settings, Icons.settings_outlined),
+    ];
   }
 
   @override
@@ -34,18 +43,38 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           bodies[page],
-          Positioned(
-            bottom: 0,
-            right: 0,
-            left: 0,
-            child: XetiaBottomNavBar(
-              onTap: (value) {
-                setState(() {
-                  page = value;
-                });
-              },
-              page: page,
-            ),
+          StatefulBuilder(
+            builder: (context, statefulSetState) {
+              return !showFAB
+                  ? Positioned(
+                      bottom: 0,
+                      right: 0,
+                      left: 0,
+                      child: XetiaBottomNavBar(
+                        onTap: (value) {
+                          setState(() {
+                            page = value;
+                          });
+                        },
+                        onDoubleTap: () {
+                          statefulSetState(() {
+                            showFAB = true;
+                          });
+                        },
+                        page: page,
+                        items: items,
+                      ),
+                    )
+                  : MyDraggableFAB(
+                      onTap: () {
+                        statefulSetState(() {
+                          showFAB = false;
+                        });
+                      },
+                      selectedIndex: page,
+                      items: items,
+                    );
+            },
           ),
         ],
       ),
