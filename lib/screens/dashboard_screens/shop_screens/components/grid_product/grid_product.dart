@@ -146,7 +146,7 @@ class ListLayoutShop extends StatelessWidget {
   }
 }
 
-class ListItemShop extends StatelessWidget {
+class ListItemShop extends StatefulWidget {
   const ListItemShop({
     Key key,
     @required this.widget,
@@ -155,6 +155,27 @@ class ListItemShop extends StatelessWidget {
 
   final GridProduct widget;
   final int index;
+
+  @override
+  _ListItemShopState createState() => _ListItemShopState();
+}
+
+class _ListItemShopState extends State<ListItemShop> {
+  int pcs = 0;
+
+  void addPcs() {
+    setState(() {
+      pcs++;
+    });
+  }
+
+  void minPcs() {
+    setState(() {
+      if (pcs > 0) {
+        pcs--;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +192,7 @@ class ListItemShop extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.network(
-                    widget.products[index].thumbnail.replaceAll(
+                    widget.widget.products[widget.index].thumbnail.replaceAll(
                         "https://storage.googleapis.com/jsc-product-images/http",
                         "http"),
                     fit: BoxFit.cover,
@@ -207,10 +228,11 @@ class ListItemShop extends StatelessWidget {
                           icon: FontAwesomeIcons.plus,
                           bgColor: Colors.black,
                           iconColor: Colors.white,
+                          onTap: addPcs,
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "2",
+                          pcs.toString(),
                           style: kDarkNormalStyle,
                         ),
                         SizedBox(height: 4),
@@ -218,6 +240,7 @@ class ListItemShop extends StatelessWidget {
                           icon: FontAwesomeIcons.minus,
                           bgColor: Colors.black,
                           iconColor: Colors.white,
+                          onTap: minPcs,
                         )
                       ],
                     ),
@@ -228,17 +251,20 @@ class ListItemShop extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Sariraya Frozen Meatball",
+                              widget.widget.products[widget.index].name,
                               style: kCustomBoldStyle(14, Colors.black),
                             ),
                             SizedBox(height: 4),
                             Text(
-                              "500 gr",
+                              widget.widget.products[widget.index].weight !=
+                                      null
+                                  ? widget.widget.products[widget.index].weight
+                                  : "0",
                               style: kDarkNormalStyle,
                             ),
                             SizedBox(height: 2),
                             Text(
-                              "¥1200",
+                              "¥${widget.widget.products[widget.index].price}",
                               style: kDarkNormalStyle,
                             ),
                           ],
@@ -288,22 +314,27 @@ class MiniButton extends StatelessWidget {
   final Color bgColor;
   final Color iconColor;
   final IconData icon;
+  final Function onTap;
 
-  const MiniButton({Key key, this.bgColor, this.iconColor, this.icon})
+  const MiniButton(
+      {Key key, this.bgColor, this.iconColor, this.icon, this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: bgColor,
-      ),
-      padding: EdgeInsets.all(3),
-      child: Icon(
-        icon,
-        color: iconColor,
-        size: 16,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: bgColor,
+        ),
+        padding: EdgeInsets.all(3),
+        child: Icon(
+          icon,
+          color: iconColor,
+          size: 16,
+        ),
       ),
     );
   }
@@ -343,42 +374,42 @@ class GridLayoutShop extends StatelessWidget {
       ],
     );
   }
+}
 
-  void _showSheet(List<Product> product, BuildContext context,
-      int productLength, int indexParent) {
-    showBarModalBottomSheet(
-      backgroundColor: Colors.white,
-      barrierColor: kOrange.withOpacity(0.7),
-      context: context,
-      enableDrag: true,
-      isDismissible: true,
-      expand: true,
-      bounce: true,
-      builder: (mContext) => Center(
-        child: Swiper(
-          itemBuilder: (BuildContext context, int index) {
-            return DetailProductDialog(
-              product: product[index],
-              mContext: mContext,
-            );
-          },
-          index: indexParent,
-          loop: false,
-          itemCount: productLength,
-          // di bawah untuk memunculkan indikator dot
-          // pagination: new SwiperPagination(),
+void _showSheet(List<Product> product, BuildContext context, int productLength,
+    int indexParent) {
+  showBarModalBottomSheet(
+    backgroundColor: Colors.white,
+    barrierColor: kOrange.withOpacity(0.7),
+    context: context,
+    enableDrag: true,
+    isDismissible: true,
+    expand: true,
+    bounce: true,
+    builder: (mContext) => Center(
+      child: Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          return DetailProductDialog(
+            product: product[index],
+            mContext: mContext,
+          );
+        },
+        index: indexParent,
+        loop: false,
+        itemCount: productLength,
+        // di bawah untuk memunculkan indikator dot
+        // pagination: new SwiperPagination(),
 
-          // mengatur icon dan color logo
-          control: SwiperControl(
-            color: kOrange,
-            iconNext: Icons.keyboard_arrow_right_rounded,
-            iconPrevious: Icons.keyboard_arrow_left_rounded,
-            size: 36,
-          ),
+        // mengatur icon dan color logo
+        control: SwiperControl(
+          color: kOrange,
+          iconNext: Icons.keyboard_arrow_right_rounded,
+          iconPrevious: Icons.keyboard_arrow_left_rounded,
+          size: 36,
         ),
       ),
-    );
-  }
+    ),
+  );
 }
 
 class GridItemShop extends StatelessWidget {
