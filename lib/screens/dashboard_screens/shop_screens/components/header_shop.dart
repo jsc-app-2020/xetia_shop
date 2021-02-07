@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:xetia_shop/components/search_text_field_grey.dart';
 import 'package:xetia_shop/constants.dart';
 
-class HeaderShop extends StatefulWidget {
-  @override
-  _HeaderShopState createState() => _HeaderShopState();
-}
+class HeaderShop extends StatelessWidget {
+  final Function onChangedShop;
+  final Function onCloseShop;
+  final String searchShop;
+  final GlobalKey<FormState> formKeyShop;
 
-class _HeaderShopState extends State<HeaderShop> {
-  String searchShop = "";
-  GlobalKey<FormState> formKeyShop = GlobalKey<FormState>();
+  const HeaderShop({Key key, this.onChangedShop, this.onCloseShop, this.formKeyShop, this.searchShop}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,40 +36,30 @@ class _HeaderShopState extends State<HeaderShop> {
                   ),
                 ),
               ),
-              StatefulBuilder(
-                builder: (context, setState) => Form(
-                  key: formKeyShop,
-                  child: Container(
-                    child: SearchTextFieldGrey(
-                      hintText: "Search halal food in Japan",
-                      controller: searchShop,
-                      onPressed: () {
-                        if (formKeyShop.currentState.validate()) {
-                          print("search");
-                        }
-                      },
-                      onFieldSubmitted: (value) {
-                        if (formKeyShop.currentState.validate()) {
-                          print(value);
-                        }
-                      },
-                      onChanged: (value) {
-                        setState(() {
-                          searchShop = value;
-                        });
-                      },
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Please enter some text";
-                        }
-                        return null;
-                      },
-                      closeSearch: () {
-                        setState(() {
-                          searchShop = "";
-                        });
-                      },
-                    ),
+              Form(
+                key: formKeyShop,
+                child: Container(
+                  child: SearchTextFieldGrey(
+                    hintText: "Search halal food in Japan",
+                    controller: searchShop,
+                    onPressed: () {
+                      if (formKeyShop.currentState.validate()) {
+                        print("search");
+                      }
+                    },
+                    onFieldSubmitted: (value) {
+                      if (formKeyShop.currentState.validate()) {
+                        print(value);
+                      }
+                    },
+                    onChanged: onChangedShop,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Please enter some text";
+                      }
+                      return null;
+                    },
+                    closeSearch: onCloseShop,
                   ),
                 ),
               ),
