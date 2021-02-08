@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xetia_shop/components/colored_safe_area.dart';
-import 'package:xetia_shop/components/xetia_bottom_nav_bar.dart';
-import 'package:xetia_shop/constants.dart';
+import 'package:xetia_shop/components/custom_curved_nav_bar.dart';
+import 'package:xetia_shop/components/draggable_fab.dart';
 
 import 'cart_screens/cart_screen.dart';
 import 'dashboard_screens/dashboard_screen.dart';
@@ -32,18 +31,75 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(
-      color: kBgWhite,
-      child: Scaffold(
-        body: bodies[page],
-        bottomNavigationBar: XetiaBottomNavBar(
-          onTap: (value) {
-            setState(() {
-              page = value;
-            });
-          },
-        ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          bodies[page],
+          XetiaBottomNavBar(
+            onTap: (value) {
+              setState(() {
+                page = value;
+              });
+            },
+            page: page,
+          ),
+        ],
       ),
     );
+  }
+}
+
+class XetiaBottomNavBar extends StatefulWidget {
+  final int page;
+  final Function onTap;
+
+  const XetiaBottomNavBar({Key key, this.page, this.onTap}) : super(key: key);
+
+  @override
+  _XetiaBottomNavBarState createState() => _XetiaBottomNavBarState();
+}
+
+class _XetiaBottomNavBarState extends State<XetiaBottomNavBar> {
+  List<NavBarItem> items;
+  bool showFAB = false;
+
+  @override
+  void initState() {
+    super.initState();
+    items = [
+      NavBarItem(Icons.home, Icons.home_outlined),
+      NavBarItem(Icons.favorite, Icons.favorite_border),
+      NavBarItem(Icons.shop, Icons.shop_outlined),
+      NavBarItem(Icons.settings, Icons.settings_outlined),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return !showFAB
+        ? Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: CustomCurvedNavBar(
+              onTap: widget.onTap,
+              onDoubleTap: () {
+                setState(() {
+                  showFAB = true;
+                });
+              },
+              page: widget.page,
+              items: items,
+            ),
+          )
+        : MyDraggableFAB(
+            onTap: () {
+              setState(() {
+                showFAB = false;
+              });
+            },
+            selectedIndex: widget.page,
+            items: items,
+          );
   }
 }
