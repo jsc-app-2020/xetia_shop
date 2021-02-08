@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:xetia_shop/components/my_button.dart';
 import 'package:xetia_shop/components/my_textfield_password.dart';
 import 'package:xetia_shop/constants.dart';
+import 'package:xetia_shop/core/network/signup/register.dart';
 
 class SignUpPasswordScreen extends StatefulWidget {
   final String first;
@@ -26,14 +28,11 @@ class _SignUpPasswordScreenState extends State<SignUpPasswordScreen> {
   bool isObscureFirst = true;
   bool isObscureSecond = true;
 
-  final _formKey = GlobalKey<FormState>();
-
-  // Auth auth;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    // auth = Auth();
   }
 
   @override
@@ -144,7 +143,9 @@ class _SignUpPasswordScreenState extends State<SignUpPasswordScreen> {
                           flex: 2,
                           child: MyButton(
                             onTap: () {
-                              if (_formKey.currentState.validate()) {}
+                              if (_formKey.currentState.validate()) {
+                                registerReq();
+                              }
                             },
                             color: kOrange,
                             text: "next",
@@ -160,5 +161,32 @@ class _SignUpPasswordScreenState extends State<SignUpPasswordScreen> {
         ),
       ),
     );
+  }
+
+  void registerReq() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final res =
+        await register(widget.first, widget.last, widget.email, password);
+
+    setState(() {
+      isLoading = false;
+    });
+    if (res.meta.code == 200) {
+      Fluttertoast.showToast(
+          msg: "sign up successful",
+          backgroundColor: kGreen,
+          toastLength: Toast.LENGTH_LONG);
+      Navigator.pushReplacementNamed(context, "/signIn");
+    } else if (res.meta.code == 500) {
+      Fluttertoast.showToast(
+          msg: "email already exists",
+          backgroundColor: kRed,
+          toastLength: Toast.LENGTH_LONG);
+    }
+    print(res);
+    // res.then((value) => print(value.meta));
   }
 }
