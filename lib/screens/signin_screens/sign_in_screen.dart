@@ -8,6 +8,7 @@ import 'package:xetia_shop/components/my_textfield.dart';
 import 'package:xetia_shop/components/my_textfield_password.dart';
 import 'package:xetia_shop/core/db/model/user.dart';
 import 'package:xetia_shop/core/db/user_database_provider.dart';
+import 'package:xetia_shop/core/model/signin/sign_in_response.dart';
 import 'package:xetia_shop/core/network/signin/sign_in_request.dart';
 import 'package:xetia_shop/core/network/token/subcription_token.dart';
 import 'package:xetia_shop/screens/signup_screens/sign_up_name.dart';
@@ -246,7 +247,7 @@ class _SignInScreenState extends State<SignInScreen> {
       isLoading = true;
     });
 
-    final loginRes = await signInRequest(email, password);
+    SignInResponse loginRes = await signInRequest(email, password);
 
     if (loginRes.meta.code == 200) {
       // String subscription = await getSubscription(loginRes.userId);
@@ -265,7 +266,7 @@ class _SignInScreenState extends State<SignInScreen> {
         userId: loginRes.userId,
         first: loginRes.firstName,
         last: loginRes.lastName,
-        photo: loginRes.imageUrl,
+        photo: "loginRes.imageUrl",
         refreshToken: loginRes.tokens.refresh,
         accessToken: loginRes.tokens.access,
         subcriptionToken: "subscription",

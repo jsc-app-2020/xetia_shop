@@ -15,7 +15,7 @@ class Budgeting extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white.withOpacity(0.7),
+        color: isDark ? kBgGrey : kWhite,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
@@ -36,7 +36,7 @@ class Budgeting extends StatelessWidget {
                 Text(
                   "Budgeting",
                   textAlign: TextAlign.center,
-                  style: kDarkBoldStyle,
+                  style: isDark ? kBoldStyle : kDarkBoldStyle,
                 ),
                 SizedBox(width: 140),
                 Text(

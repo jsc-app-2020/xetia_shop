@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:xetia_shop/constants.dart';
 
 class ProfileCard extends StatelessWidget {
+  final bool isDark;
+
+  const ProfileCard({Key key, this.isDark}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(15),
+        color: isDark ? kBgBlack : kBgWhite,
         child: Row(
           children: [
             Padding(
@@ -32,13 +36,13 @@ class ProfileCard extends StatelessWidget {
                   Text(
                     "Tince",
                     textAlign: TextAlign.left,
-                    style: kDarkNormalStyle,
+                    style: isDark ? kNormalStyle : kDarkNormalStyle,
                   ),
                   SizedBox(height: 5),
                   Text(
                     "Edit Profile",
                     textAlign: TextAlign.left,
-                    style: kDarkNormalStyle,
+                    style: isDark ? kNormalStyle : kDarkNormalStyle,
                   ),
                 ],
               ),
@@ -46,7 +50,8 @@ class ProfileCard extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
-                  child: Icon(Icons.arrow_right, color: Colors.black)),
+                  child: Icon(Icons.arrow_right,
+                      color: isDark ? Colors.white : Colors.black)),
             )
           ],
         ));

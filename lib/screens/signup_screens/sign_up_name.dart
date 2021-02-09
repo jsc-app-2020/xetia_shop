@@ -15,7 +15,7 @@ class SignUpNameScreen extends StatefulWidget {
 }
 
 class _SignUpNameScreenState extends State<SignUpNameScreen> {
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String first = "";
   String last = "";
@@ -142,7 +142,7 @@ class _SignUpNameScreenState extends State<SignUpNameScreen> {
                       child: MyButton(
                         color: kOrange,
                         onTap: () {
-                          if (!_formKey.currentState.validate()) {
+                          if (_formKey.currentState.validate()) {
                             Navigator.push(
                               context,
                               PageTransition(

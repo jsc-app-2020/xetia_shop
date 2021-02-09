@@ -6,11 +6,14 @@ import 'package:xetia_shop/screens/components/sliver_app_bar_delegate.dart';
 const Color kOrange = Color(0xFFFCB216);
 const Color kOrangeDark = Color(0xFFFCB216);
 Color kGrey = Colors.grey[500];
+const Color kBgGrey = Color(0xFF616568);
 const Color kBgWhite = Color(0xFFf3f3f3);
+const Color kBgBlack = Color(0xFF000000);
 const Color kGreen = Color(0xFF25C685);
 const Color kYellow = Color(0xFFf1bb41);
 const Color kGreenGrey = Color(0xFF7de6bd);
 const Color kRed = Color(0xFFFF575F);
+const Color kWhite = Color(0xFFffffff);
 
 Color kRandomColor =
     Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);

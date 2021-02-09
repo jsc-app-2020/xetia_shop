@@ -71,7 +71,7 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
       padding: EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white.withOpacity(0.7),
+        color: widget.isDark ? kBgGrey : kWhite,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
@@ -89,7 +89,7 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
             child: Text(
               "history transaction",
               textAlign: TextAlign.center,
-              style: kDarkBoldStyle,
+              style: widget.isDark ? kBoldStyle : kDarkBoldStyle,
             ),
           ),
           Container(

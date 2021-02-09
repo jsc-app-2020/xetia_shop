@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xetia_shop/constants.dart';
 
 class CarouselCardContainer extends StatefulWidget {
   final bool isDark;
@@ -59,7 +60,7 @@ class _CarouselCardContainerState extends State<CarouselCardContainer> {
                 margin: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white.withOpacity(0.7),
+                  color: widget.isDark ? kBgGrey : kWhite,
                 ),
                 child: card,
               );

@@ -6,8 +6,9 @@ import 'package:xetia_shop/constants.dart';
 
 class BusinessCardItem extends StatelessWidget {
   final Color color;
+  final bool isDark;
 
-  const BusinessCardItem({Key key, this.color}) : super(key: key);
+  const BusinessCardItem({Key key, this.color, this.isDark}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +39,9 @@ class BusinessCardItem extends StatelessWidget {
               children: [
                 Text(
                   "XETIA",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24,
-                  ),
+                  style: isDark
+                      ? kCustomStyle(24, kYellow)
+                      : kCustomStyle(24, Colors.white),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.min,

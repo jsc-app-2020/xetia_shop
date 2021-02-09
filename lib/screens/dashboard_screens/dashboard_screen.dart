@@ -9,6 +9,9 @@ import 'package:xetia_shop/screens/dashboard_screens/profile_screens/profile_scr
 import 'package:xetia_shop/screens/dashboard_screens/shop_screens/shop_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
+  final bool isDark;
+
+  const DashboardScreen({Key key, this.isDark}) : super(key: key);
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -17,7 +20,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<String> tabText;
   List<IconData> tabIcon;
 
-  List<ShiftingTab> getList(List<String> tabText, List<IconData> tabIcon) {
+  List<ShiftingTab> getList(
+      List<String> tabText, List<IconData> tabIcon, bool isDark) {
     List<ShiftingTab> childes = [];
     for (var i = 0; i < tabText.length; i++) {
       childes.add(ShiftingTab(
@@ -25,6 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           icon: Icon(
             tabIcon[i],
             size: 30,
+            color: isDark ? kBgBlack : kBgWhite,
           )));
     }
     return childes;
@@ -44,9 +49,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return ColoredSafeArea(
-      color: kBgWhite,
+      color: widget.isDark ? kBgBlack : kBgWhite,
       child: Scaffold(
-        backgroundColor: kBgWhite,
+        backgroundColor: widget.isDark ? kBgBlack : kBgWhite,
         body: DefaultTabController(
           length: tabText.length,
           child: NestedScrollView(
@@ -62,8 +67,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         color: kOrange,
                         fontSize: 24,
                       ),
-                      tabs: getList(tabText, tabIcon),
-                      color: Colors.white,
+                      tabs: getList(tabText, tabIcon, widget.isDark),
+                      color: !widget.isDark ? kBgBlack : kBgWhite,
                       forceUpperCase: false,
                     ),
                   ),
@@ -75,7 +80,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             body: TabBarView(
               children: [
                 ShopScreen(),
-                ProfileScreen(),
+                ProfileScreen(
+                  isDark: widget.isDark,
+                ),
                 MessageScreen(),
               ],
             ),

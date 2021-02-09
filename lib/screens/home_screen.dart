@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xetia_shop/components/custom_curved_nav_bar.dart';
 import 'package:xetia_shop/components/draggable_fab.dart';
+import 'package:xetia_shop/core/provider/ThemeProvider.dart';
 
 import 'cart_screens/cart_screen.dart';
 import 'dashboard_screens/dashboard_screen.dart';
@@ -29,12 +31,21 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
   }
 
+  List<Widget> bodyList(bool isDark) => [
+        DashboardScreen(isDark: isDark),
+        FavoriteScreen(),
+        CartScreen(),
+        SettingScreen(),
+      ];
+
   @override
   Widget build(BuildContext context) {
+    bool isDark = Provider.of<ThemeProvider>(context).isDark;
+    print("mode gelap $isDark");
     return Scaffold(
       body: Stack(
         children: [
-          bodies[page],
+          bodyList(isDark)[page],
           XetiaBottomNavBar(
             onTap: (value) {
               setState(() {
